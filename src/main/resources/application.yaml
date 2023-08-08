@@ -1,0 +1,39 @@
+server:
+  port: ${PORT:9090}
+  servlet:
+    context-path: /svc
+
+spring:
+  application:
+    name: graphql-svc
+
+  datasource:
+    username: ${DATABASE_USER}
+    password: ${DATABASE_PASSWORD}
+    url: ${DATABASE_URL}
+
+  jackson:
+    property-naming-strategy: SNAKE_CASE
+
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: create-drop
+    properties:
+      hibernate:
+        format_sql: true
+
+  main:
+    banner-mode: off
+
+logging:
+  level:
+    org:
+      springframework: off
+      hibernate:
+        SQL: debug
+        orm:
+          jdbc:
+            bind: trace
+
+    root: warn

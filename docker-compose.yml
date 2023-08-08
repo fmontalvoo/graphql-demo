@@ -1,0 +1,13 @@
+version: '3'
+services:
+  mariadb:
+    image: 'mariadb:latest'
+    volumes:
+      - './mariadb:/var/lib/mysql'
+    environment:
+      MYSQL_DATABASE: 'dev_database'
+      MYSQL_USER: 'frank'
+      MYSQL_PASSWORD: 'Admin.123'
+      MYSQL_ROOT_PASSWORD: 'Admin.r00t'
+    ports:
+      - '3306:3306'
