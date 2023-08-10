@@ -1,5 +1,5 @@
 server:
-  port: ${PORT:9090}
+  port: ${PORT:8080}
   servlet:
     context-path: /svc
 
@@ -18,13 +18,17 @@ spring:
   jpa:
     show-sql: true
     hibernate:
-      ddl-auto: create-drop
+      ddl-auto: create
     properties:
       hibernate:
         format_sql: true
 
   main:
     banner-mode: off
+
+  graphql:
+    graphiql:
+      enabled: true
 
 logging:
   level:
