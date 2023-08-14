@@ -13,6 +13,7 @@ type Query {
     getProducto(id: ID!): Producto
     getCategorias: [Categoria]
     getCategoria(id: ID!): Categoria
+    getProductosPaged(page: Int, size: Int): Page
 }
 
 type Producto {
@@ -30,6 +31,20 @@ type Categoria {
     padre: Categoria
     subcategorias: [Categoria]
     productos: [Producto]
+}
+
+union Content = Producto | Categoria
+
+type Page {
+    content: [Content]
+    totalPages: Int
+    totalElements: Int
+    last: Boolean
+    size: Int
+    number: Int
+    numberOfElements: Int
+    first: Boolean
+    empty: Boolean
 }
 
 input ProductoInput {

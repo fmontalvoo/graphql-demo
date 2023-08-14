@@ -6,6 +6,8 @@ import com.fmontalvoo.graphql.model.Categoria;
 import com.fmontalvoo.graphql.model.Producto;
 import com.fmontalvoo.graphql.repository.CategoriaRepository;
 import com.fmontalvoo.graphql.repository.ProductoRepository;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.graphql.data.method.annotation.Argument;
 import org.springframework.graphql.data.method.annotation.MutationMapping;
 import org.springframework.graphql.data.method.annotation.QueryMapping;
@@ -46,6 +48,11 @@ public class GraphQLController {
     public Producto getProducto(@Argument Long id) {
         return productoRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException(String.format("No se encontró el producto con id: %d", id)));
+    }
+
+    @QueryMapping
+    public Page<Producto> getProductosPaged(@Argument int page, @Argument int size) {
+        return productoRepository.findAll(PageRequest.of(page, size));
     }
 
     @MutationMapping
